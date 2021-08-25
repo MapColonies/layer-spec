@@ -24,5 +24,19 @@
         "options": null
       }
     }
+  },
+  "db": {
+    "host": "localhost",
+    "user": "postgres",
+    "password": "postgres",
+    "database": "sync-storage",
+    "port": 5432,
+    "enableSslAuth": false,
+    "rejectUnauthorized": true,
+    "sslPaths": {
+      "ca": "",
+      "key": "",
+      "cert": ""
+    }
   }
 }

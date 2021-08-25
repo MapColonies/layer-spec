@@ -1,5 +1,4 @@
-# Map Colonies typescript service template
-
+# layer-spec 
 ----------------------------------
 
 ![badge-alerts-lgtm](https://img.shields.io/lgtm/alerts/github/MapColonies/ts-server-boilerplate?style=for-the-badge)

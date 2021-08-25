@@ -1,51 +1,63 @@
 openapi: 3.0.1
 info:
-  title: service-name
-  description: basic template for map colonies service
+  title: Sync Worker
+  description: queryable database service for layer specification
   version: 1.0.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
 
 paths:
-  /anotherResource:
+  /tilesCount/{layerId}:
     get:
-      operationId: getAnotherResource
+      operationId: getTilesCount
       tags:
-        - anotherResource
-      summary: gets the resource
+        - tiles
+      summary: gets the tiles count by layer id
+      parameters:
+        - name: layerId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/anotherResource'
-  /resourceName:
-    get:
-      operationId: getResourceName
-      tags:
-        - resourceName
-      summary: gets the resource
-      responses:
-        200:
-          description: OK
+                $ref: '#/components/schemas/getTilesCount'
+        400:
+          description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resource'
-    post:
-      operationId: createResource
+                $ref: '#/components/schemas/error'
+    put:
+      operationId: updateTilesCount
       tags:
-        - resourceName
-      summary: creates a new record of type resource
+        - tiles
+      summary: insert/update the tiles count by layer id
+      parameters:
+        - name: layerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/upsertTilesCountReq'
       responses:
         201:
-          description: created
+          description: Updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resource'
+                $ref: '#/components/schemas/upsertTilesCountRes'
         400:
           description: Bad Request
           content:
@@ -61,28 +73,25 @@ components:
       properties:
         message:
           type: string
-    resource:
+    getTilesCount:
       type: object
       required:
-        - id
-        - name
-        - description
+        - tilesCount
       properties:
-        id:
+        tilesCount:
           type: number
-          format: int64
-        name:
-          type: string
-        description:
-          type: string
-    anotherResource:
+    upsertTilesCountRes:
       type: object
       required:
-        - kind
-        - isAlive
-        - description
+        - message
       properties:
-        kind:
+        message:
           type: string
-        isAlive:
-          type: boolean
+    upsertTilesCountReq:
+      type: object
+      required:
+        - tilesBatchCount
+      properties:
+        tilesBatchCount:
+          type: integer
+          minimum: 1

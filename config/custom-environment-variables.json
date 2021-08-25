@@ -38,5 +38,22 @@
         }
       }
     }
+  },
+  "db": {
+    "host": "DB_HOST",
+    "port": "DB_PORT",
+    "user": "DB_USER",
+    "password": "DB_PASSWORD",
+    "database": "DB_NAME",
+    "enableSslAuth": {
+      "__name": "DB_SSL_ENABLE",
+      "__format": "boolean"
+    },
+    "rejectUnauthorized": "DB_SSL_REJECT_UNAUTHORIZED",
+    "sslPaths": {
+      "ca": "DB_SSL_CA",
+      "key": "DB_SSL_KEY",
+      "cert": "DB_SSL_CERT"
+    }
   }
 }

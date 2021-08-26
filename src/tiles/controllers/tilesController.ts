@@ -15,7 +15,7 @@ export class TilesController {
   private readonly createdResourceCounter: BoundCounter;
 
   public constructor(@inject(TilesManager) private readonly manager: TilesManager, @inject(Services.METER) private readonly meter: Meter) {
-    this.createdResourceCounter = meter.createCounter('created_resource');
+    this.createdResourceCounter = meter.createCounter('upserted tiles count');
   }
 
   public getTilesCount: GetTilesCountHandler = async (req, res, next) => {

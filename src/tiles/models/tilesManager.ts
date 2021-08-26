@@ -19,8 +19,9 @@ export class TilesManager {
     this.logger = logger;
   }
   public async getTilesCount(layerId: string): Promise<ITilesCountResponse> {
-    const query = `SELECT "tilesCount" FROM "TilesCounter" WHERE "layerId"='${layerId}'`;
-    const result = await this.pgClient.execute<ITilesCountResponse>(query);
+    const query = `SELECT "tilesCount" FROM "TilesCounter" WHERE "layerId"=$1`;
+    const values = [layerId];
+    const result = await this.pgClient.execute<ITilesCountResponse>(query, values);
     // throw not-found error if the query result is an empty array which means layer id is not exists.
     if (result.length === 0) {
       throw new NotFoundError(`layer id: "${layerId}" is not exists`);
@@ -31,9 +32,10 @@ export class TilesManager {
 
   public async upsertTilesCount(layerId: string, tilesBatchCount: number): Promise<void> {
     const query = `INSERT INTO "TilesCounter" ("tilesCount", "layerId") 
-      VALUES (${tilesBatchCount}, '${layerId}') 
-      ON CONFLICT ("layerId") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + ${tilesBatchCount}`;
-    await this.pgClient.execute(query);
-    this.logger.info(`tiles batch count for layerId: '${layerId}' updated successfully`);
+      VALUES ($1, $2) 
+      ON CONFLICT ("layerId") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
+    const values = [tilesBatchCount, layerId];
+    this.logger.info(`updating tiles batch count for layerId: '${layerId}' in database`);
+    await this.pgClient.execute(query, values);
   }
 }

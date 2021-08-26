@@ -28,10 +28,10 @@ export class PgClient {
     this.pool = new Pool(this.pgConfig);
   }
 
-  public async execute<T>(query: string): Promise<T[]> {
+  public async execute<T>(query: string, values?: unknown[]): Promise<T[]> {
     const client = await this.pool.connect();
     try {
-      const queryResult = await client.query<T>(query);
+      const queryResult = await client.query<T>(query, values);
       return queryResult.rows;
     } catch (error) {
       throw new Error(error);

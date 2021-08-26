@@ -1,4 +1,3 @@
-import { Logger } from '@map-colonies/js-logger';
 import { Meter } from '@map-colonies/telemetry';
 import { BoundCounter } from '@opentelemetry/api-metrics';
 import { RequestHandler } from 'express';
@@ -15,11 +14,7 @@ type UpdateTilesCountHandler = RequestHandler<{ layerId: string }, ITilesCountRe
 export class TilesController {
   private readonly createdResourceCounter: BoundCounter;
 
-  public constructor(
-    @inject(Services.LOGGER) private readonly logger: Logger,
-    @inject(TilesManager) private readonly manager: TilesManager,
-    @inject(Services.METER) private readonly meter: Meter
-  ) {
+  public constructor(@inject(TilesManager) private readonly manager: TilesManager, @inject(Services.METER) private readonly meter: Meter) {
     this.createdResourceCounter = meter.createCounter('created_resource');
   }
 
@@ -32,9 +27,13 @@ export class TilesController {
     }
   };
 
-  public upsertTilesCount: UpdateTilesCountHandler = async (req, res) => {
-    await this.manager.upsertTilesCount(req.params.layerId, req.body.tilesBatchCount);
-    this.createdResourceCounter.add(1);
-    res.sendStatus(httpStatus.CREATED);
+  public upsertTilesCount: UpdateTilesCountHandler = async (req, res, next) => {
+    try {
+      await this.manager.upsertTilesCount(req.params.layerId, req.body.tilesBatchCount);
+      this.createdResourceCounter.add(1);
+      res.sendStatus(httpStatus.CREATED);
+    } catch (error) {
+      next(error);
+    }
   };
 }

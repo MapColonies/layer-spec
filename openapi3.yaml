@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Sync Worker
-  description: queryable database service for layer specification
+  title: Layer-Spec
+  description: exposes CRUD (Create, Read, Update and Delete) operations into/from layer-spec database.
   version: 1.0.0
   license:
     name: MIT

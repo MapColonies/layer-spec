@@ -124,8 +124,6 @@ LOG_LEVEL set the log level *based on 'winston' logger, available values as decl
 
 DB Configurations:
 
-if MAPPROXY_FILE_PROVIDER is set to 'db' make sure to declare next envs
-
 DB_HOST set the server host , deafult to 'localhost'
 
 DB_USER set the database username, default to 'postgres'

@@ -1,7 +1,7 @@
 {
   "name": "layer-spec",
   "version": "1.0.0",
-  "description": "queryable database service for layer specification ",
+  "description": "exposes CRUD (Create, Read, Update and Delete) operations into/from layer-spec database",
   "main": "./src/index.ts",
   "scripts": {
     "test:unit": "jest --config=./tests/configurations/unit/jest.config.js --passWithNoTests",

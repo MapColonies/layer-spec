@@ -31,11 +31,11 @@ export class TilesManager {
   }
 
   public async upsertTilesCount(layerId: string, tilesBatchCount: number): Promise<void> {
+    this.logger.info(`updating tiles batch count for layerId: '${layerId}' in database`);
     const query = `INSERT INTO "TilesCounter" ("tilesCount", "layerId") 
       VALUES ($1, $2) 
       ON CONFLICT ("layerId") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
     const values = [tilesBatchCount, layerId];
-    this.logger.info(`updating tiles batch count for layerId: '${layerId}' in database`);
     await this.pgClient.execute(query, values);
   }
 }

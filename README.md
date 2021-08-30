@@ -4,6 +4,10 @@
 
 This service exposes CRUD (Create, Read, Update and Delete) operations into/from layer-spec database.
 
+exposes queryable api to get tiles count by layer id.
+
+
+
 ### Template Features:
 
 - eslint configuration by [@map-colonies/eslint-config](https://github.com/MapColonies/eslint-config)
@@ -119,7 +123,7 @@ ENVS:
 
 SERVER_PORT set the server port number - deafult to 8080
 
-LOG_LEVEL set the log level *based on 'winston' logger, available values as declared in winston logger docs, default to 'info'
+LOG_LEVEL set the log level *based on '@map-colonies/js-logger' logger, available values as declared in @map-colonies/js-logger logger docs, default to 'info'
 
 
 DB Configurations:

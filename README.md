@@ -1,16 +1,12 @@
-# Map Colonies typescript service template
-
+# layer-spec 
 ----------------------------------
 
-![badge-alerts-lgtm](https://img.shields.io/lgtm/alerts/github/MapColonies/ts-server-boilerplate?style=for-the-badge)
 
-![grade-badge-lgtm](https://img.shields.io/lgtm/grade/javascript/github/MapColonies/ts-server-boilerplate?style=for-the-badge)
+This service exposes CRUD (Create, Read, Update and Delete) operations into/from layer-spec database.
 
-![snyk](https://img.shields.io/snyk/vulnerabilities/github/MapColonies/ts-server-boilerplate?style=for-the-badge)
+exposes queryable api to get tiles count by layer id.
 
-----------------------------------
 
-This is a basic repo template for building new MapColonies web services in Typescript.
 
 ### Template Features:
 
@@ -120,3 +116,34 @@ To only run integration tests:
 ```bash
 npm run test:integration
 ```
+
+## Configurations
+
+ENVS:
+
+SERVER_PORT set the server port number - deafult to 8080
+
+LOG_LEVEL set the log level *based on '@map-colonies/js-logger' logger, available values as declared in @map-colonies/js-logger logger docs, default to 'info'
+
+
+DB Configurations:
+
+DB_HOST set the server host , deafult to 'localhost'
+
+DB_USER set the database username, default to 'postgres'
+
+DB_PASSWORD set the database password, default to 'postgres'
+
+DB_NAME set the database name, no default value
+
+DB_PORT set the database port, default to 5432
+
+DB_SSL_ENABLE set to true if you wished to use database ssl. default to false
+
+DB_REJECT_UNAUTHORIZED if true, the server certificate is verified against the list of supplied CAs
+
+DB_SSL_CA set the path to the CA file
+
+DB_SSL_KEY set the path to the KEY file
+
+DB_SSL_CERT set the path to the CERT file

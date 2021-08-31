@@ -10,4 +10,5 @@ export enum Services {
   CONFIG = 'IConfig',
   TRACER = 'TRACER',
   METER = 'METER',
+  DB_CONFIG = 'IDBConfig',
 }

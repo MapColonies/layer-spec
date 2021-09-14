@@ -12,11 +12,11 @@ initialDelaySeconds: 60
 nodePort: 30030 #for minikube deployment only
 
 cloudProvider:
-  dockerRegistryUrl: 10.45.130.11:5000
-  flavor: minikube
+  dockerRegistryUrl: my-registry-url.io
+  flavor: openshift
 
 image:
-  repository: 10.45.130.11:5000/layer-spec
+  repository: layer-spec-registry
   tag: latest
 
 local:
@@ -37,7 +37,7 @@ env:
   port: 8080
   targetPort: 8080
   protocol: TCP
-  logLevel: error
+  logLevel: info
   logPrettyPrintEnabled: false
   responseCompressionEnabled: true
   requestPayloadLimit: 1mb

@@ -59,14 +59,6 @@ describe('tiles', function () {
   });
 
   describe('Bad Path', function () {
-    it('should return 400 status code on GET request with invalid parameter', async function () {
-      const invalidLayerId = '1'; // invalid uuid
-      const response = await requestSender.getTilesCount(invalidLayerId);
-
-      expect(response.status).toBe(httpStatusCodes.BAD_REQUEST);
-      expect(executeSpy).toHaveBeenCalledTimes(0);
-    });
-
     it('should return 400 status code on PUT request with invalid body', async function () {
       const layerId = '4fb83dba-d67d-41dc-b12f-2bfafb2790e1';
       const invalidBody = {

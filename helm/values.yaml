@@ -3,6 +3,7 @@ global:
   tracing: {}
   metrics: {}
   environment: {}
+  imagePullPolicy: Always
 
 enabled: true
 environment: development
@@ -11,18 +12,32 @@ initialDelaySeconds: 60
 nodePort: 30030 #for minikube deployment only
 
 cloudProvider:
-  dockerRegistryUrl: my-registry-url.io
-  flavor: openshift
+  dockerRegistryUrl: 10.45.130.11:5000
+  flavor: minikube
 
 image:
-  repository: ts-server-boilerplate
-  tag: 'latest'
+  repository: 10.45.130.11:5000/layer-spec
+  tag: latest
+
+local:
+  certs:
+    postgres:
+      ca: "certs/postgres/rootCA.crt"
+      key: "certs/postgres/avi.key"
+      cert: "certs/postgres/avi.crt"
+
+postgresSecret:
+  enabled: true
+  useExternal: false
+  externalSecretName:
+  userName: postgres
+  password: postgres
 
 env:
   port: 8080
   targetPort: 8080
   protocol: TCP
-  logLevel: info
+  logLevel: error
   logPrettyPrintEnabled: false
   responseCompressionEnabled: true
   requestPayloadLimit: 1mb
@@ -32,7 +47,13 @@ env:
   metrics:
     enabled: false
     url: http://localhost:55681/v1/metrics
-
+  db:
+    host: localhost
+    database: sync-storage
+    port: 5432
+    sslEnabled: false
+    rejectUnauthorized: true
+  
 resources:
   enabled: false
   value:
@@ -44,7 +65,7 @@ resources:
       memory: 128Mi
 
 route:
-  enabled: true
+  enabled: false
   path: /
 
 ingress:

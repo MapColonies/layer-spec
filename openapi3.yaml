@@ -1,12 +1,13 @@
 openapi: 3.0.1
 info:
   title: Layer-Spec
-  description: exposes CRUD (Create, Read, Update and Delete) operations into/from layer-spec database.
-  version: 1.0.0
+  description: >-
+    exposes CRUD (Create, Read, Update and Delete) operations into/from
+    layer-spec database.
+  version: 1.1.0
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
-
 paths:
   /tilesCount/{layerId}:
     get:
@@ -22,13 +23,13 @@ paths:
             type: string
             format: uuid
       responses:
-        200:
+        '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/getTilesCount'
-        400:
+        '400':
           description: Bad Request
           content:
             application/json:
@@ -52,13 +53,13 @@ paths:
             schema:
               $ref: '#/components/schemas/upsertTilesCountReq'
       responses:
-        201:
+        '201':
           description: Updated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/upsertTilesCountRes'
-        400:
+        '400':
           description: Bad Request
           content:
             application/json:

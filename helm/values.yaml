@@ -3,21 +3,20 @@ global:
   tracing: {}
   metrics: {}
   environment: {}
-  imagePullPolicy: Always
 
 enabled: true
-environment: development
+environment: "development"
 replicaCount: 1
 initialDelaySeconds: 60
 nodePort: 30030 #for minikube deployment only
 
 cloudProvider:
-  dockerRegistryUrl: my-registry-url.io
-  flavor: openshift
+  dockerRegistryUrl: "my-registry-url.io"
+  flavor: "openshift"
 
 image:
-  repository: layer-spec-registry
-  tag: latest
+  repository: "layer-spec-registry"
+  tag: "latest"
 
 local:
   certs:
@@ -30,26 +29,26 @@ postgresSecret:
   enabled: true
   useExternal: false
   externalSecretName:
-  userName: postgres
-  password: postgres
+  userName:
+  password:
 
 env:
   port: 8080
   targetPort: 8080
-  protocol: TCP
-  logLevel: info
+  protocol: "TCP"
+  logLevel: "info"
   logPrettyPrintEnabled: false
   responseCompressionEnabled: true
-  requestPayloadLimit: 1mb
+  requestPayloadLimit: "1mb"
   tracing:
     enabled: false
-    url: http://localhost:55681/v1/trace
+    url: "http://localhost:55681/v1/trace"
   metrics:
     enabled: false
-    url: http://localhost:55681/v1/metrics
+    url: "http://localhost:55681/v1/metrics"
   db:
-    host: localhost
-    database: sync-storage
+    host: "localhost"
+    database: "sync-storage"
     port: 5432
     sslEnabled: false
     rejectUnauthorized: true
@@ -58,11 +57,11 @@ resources:
   enabled: false
   value:
     limits:
-      cpu: 100m
-      memory: 128Mi
+      cpu: "100m"
+      memory: "128Mi"
     requests:
-      cpu: 100m
-      memory: 128Mi
+      cpu: "100m"
+      memory: "128Mi"
 
 route:
   enabled: false
@@ -71,7 +70,7 @@ route:
 ingress:
   enabled: false
   path: /
-  host: 'localhost'
+  host: "localhost"
   cors:
     enabled: true
     origin: '*'

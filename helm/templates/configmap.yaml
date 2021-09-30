@@ -21,7 +21,7 @@ data:
   {{ end }}
   LOG_LEVEL: {{ .Values.env.logLevel | quote }}
   DB_HOST: {{ .Values.env.db.host | quote }}
-  DB_PORT: {{ .Values.env.db.port | quote }}
+  DB_PORT: {{ .Values.env.db.port }}
   DB_NAME: {{ .Values.env.db.database | quote }}
   DB_SSL_ENABLE: {{ .Values.env.db.sslEnabled | quote }}
   DB_REJECT_UNAUTHORIZED: {{ .Values.env.db.rejectUnauthorized | quote }}

@@ -29,8 +29,8 @@ postgresSecret:
   enabled: true
   useExternal: false
   externalSecretName:
-  userName:
-  password:
+  userName: "postgres"
+  password: "postgres"
 
 env:
   port: 8080

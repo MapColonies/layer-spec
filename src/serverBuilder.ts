@@ -10,6 +10,7 @@ import httpLogger from '@map-colonies/express-access-log-middleware';
 import { Services } from './common/constants';
 import { IConfig } from './common/interfaces';
 import { TILES_ROUTER_SYMBOL } from './tiles/routes/tilesRouter';
+import { getErrorLogHandlerMiddleware } from './middlewares/errorLogHandler';
 
 @injectable()
 export class ServerBuilder {
@@ -57,6 +58,7 @@ export class ServerBuilder {
   }
 
   private registerPostRoutesMiddleware(): void {
+    this.serverInstance.use(getErrorLogHandlerMiddleware((message) => this.logger.error(message)));
     this.serverInstance.use(getErrorHandlerMiddleware());
   }
 }

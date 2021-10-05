@@ -1,6 +1,6 @@
-{{- $chartName := include "ts-server-boilerplate.name" . -}}
-{{- $tracingUrl := include "ts-server-boilerplate.tracingUrl" . -}}
-{{- $metricsUrl := include "ts-server-boilerplate.metricsUrl" . -}}
+{{- $chartName := include "layer-spec.name" . -}}
+{{- $tracingUrl := include "layer-spec.tracingUrl" . -}}
+{{- $metricsUrl := include "layer-spec.metricsUrl" . -}}
 {{- if .Values.enabled -}}
 apiVersion: v1
 kind: ConfigMap
@@ -20,4 +20,9 @@ data:
   TELEMETRY_METRICS_URL: {{ $metricsUrl }}
   {{ end }}
   LOG_LEVEL: {{ .Values.env.logLevel | quote }}
+  DB_HOST: {{ .Values.env.db.host | quote }}
+  DB_PORT: {{ .Values.env.db.port }}
+  DB_NAME: {{ .Values.env.db.database | quote }}
+  DB_SSL_ENABLE: {{ .Values.env.db.sslEnabled | quote }}
+  DB_REJECT_UNAUTHORIZED: {{ .Values.env.db.rejectUnauthorized | quote }}
 {{- end }}

@@ -5,9 +5,9 @@
 trigger: none
 pr: none
 # can replace the git hub action build and push trigger
-  # tags:
-  #   include:
-  #   - v2.*
+# tags:
+#   include:
+#   - v2.*
 resources:
   repositories:
     - repository: devops

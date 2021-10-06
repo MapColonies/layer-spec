@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/MapColonies/layer-spec/compare/v1.1.1...v1.1.2) (2021-10-06)
+
+
+### Bug Fixes
+
+* added pipelines file to prettier-ignore ([00fb539](https://github.com/MapColonies/layer-spec/commit/00fb5395eabee956c8a8febdc1cea49cdacda0ae))
+
 ## 1.1.0 (2021-09-14)
 
 

@@ -94,4 +94,3 @@ components:
       properties:
         tilesBatchCount:
           type: integer
-          minimum: 1

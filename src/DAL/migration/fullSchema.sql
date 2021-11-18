@@ -1,6 +1,6 @@
 -- Table: public.TilesCounter
 -- DROP TABLE public.TilesCounter;
-CREATE TABLE "public.TilesCounter"
+CREATE TABLE "TilesCounter"
 (
     "id" serial ,
 	"tilesCount" int NOT NULL CONSTRAINT "tilesCount" CHECK ("tilesCount" > 0),

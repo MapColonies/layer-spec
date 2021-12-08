@@ -36,9 +36,9 @@ describe('tiles', function () {
         },
       ];
       executeSpy.mockResolvedValue(queryResult);
-      const layerId = '4fb83dba-d67d-41dc-b12f-2bfafb2790e1'
+      const layerId = '4fb83dba-d67d-41dc-b12f-2bfafb2790e1';
       const target = 'gw';
-      const response = await requestSender.getTilesCount(layerId,target);
+      const response = await requestSender.getTilesCount(layerId, target);
 
       expect(response.status).toBe(httpStatusCodes.OK);
 
@@ -80,7 +80,7 @@ describe('tiles', function () {
       executeSpy.mockResolvedValue(queryResult);
       const layerId = '4fb83dba-d67d-41dc-b12f-2bfafb2790e1';
       const target = 'gw';
-      const response = await requestSender.getTilesCount(layerId,target);
+      const response = await requestSender.getTilesCount(layerId, target);
 
       expect(response.status).toBe(httpStatusCodes.NOT_FOUND);
       expect(executeSpy).toHaveBeenCalledTimes(1);

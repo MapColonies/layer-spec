@@ -20,7 +20,7 @@ export class TilesManager {
   }
   public async getTilesCount(layerId: string, target: string): Promise<ITilesCountResponse> {
     const query = `SELECT "tilesCount" FROM "TilesCounter" WHERE "layerId"=$1 AND "target"=$2`;
-    const values = [layerId,target];
+    const values = [layerId, target];
     const result = await this.pgClient.execute<ITilesCountResponse>(query, values);
     // throw not-found error if the query result is an empty array which means layer id is not exists.
     if (result.length === 0) {
@@ -30,7 +30,7 @@ export class TilesManager {
     return data;
   }
 
-  public async upsertTilesCount(layerId: string, target:string, tilesBatchCount: number): Promise<void> {
+  public async upsertTilesCount(layerId: string, target: string, tilesBatchCount: number): Promise<void> {
     this.logger.info(`updating tiles batch count for layerId: '${layerId}' and target: '${target}' in database by ${tilesBatchCount} tiles`);
     const query = `INSERT INTO "TilesCounter" ("tilesCount", "layerId", "target")
       VALUES ($1, $2, $3)

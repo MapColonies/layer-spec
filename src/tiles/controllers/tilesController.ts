@@ -9,7 +9,7 @@ import { ITilesCountRequest, ITilesCountResponse, TilesManager } from '../models
 
 interface ICounterIdentifier {
   layerId: string;
-  target:string;
+  target: string;
 }
 type GetTilesCountHandler = RequestHandler<ICounterIdentifier, ITilesCountResponse, ITilesCountResponse>;
 type UpdateTilesCountHandler = RequestHandler<ICounterIdentifier, ITilesCountRequest, ITilesCountRequest>;
@@ -26,7 +26,7 @@ export class TilesController {
     try {
       const layerId = req.params.layerId;
       const target = req.params.target;
-      return res.status(httpStatus.OK).json(await this.manager.getTilesCount(layerId,target));
+      return res.status(httpStatus.OK).json(await this.manager.getTilesCount(layerId, target));
     } catch (error) {
       next(error);
     }

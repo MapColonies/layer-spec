@@ -34,8 +34,8 @@ export class TilesManager {
     this.logger.info(`updating tiles batch count for layerId: '${layerId}' and target: '${target}' in database by ${tilesBatchCount} tiles`);
     const query = `INSERT INTO "TilesCounter" ("tilesCount", "layerId", "target")
       VALUES ($1, $2, $3)
-      ON CONFLICT ON CONSTRAINT UQ_uniqueness_on_layer_and_target DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
-    const values = [tilesBatchCount, layerId];
+      ON CONFLICT ("layerId","target") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
+    const values = [tilesBatchCount, layerId, target];
     await this.pgClient.execute(query, values);
   }
 }

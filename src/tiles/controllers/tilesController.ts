@@ -7,8 +7,12 @@ import { Services } from '../../common/constants';
 
 import { ITilesCountRequest, ITilesCountResponse, TilesManager } from '../models/tilesManager';
 
-type GetTilesCountHandler = RequestHandler<{ layerId: string }, ITilesCountResponse, ITilesCountResponse>;
-type UpdateTilesCountHandler = RequestHandler<{ layerId: string }, ITilesCountRequest, ITilesCountRequest>;
+interface ICounterIdentifier {
+  layerId: string;
+  target:string;
+}
+type GetTilesCountHandler = RequestHandler<ICounterIdentifier, ITilesCountResponse, ITilesCountResponse>;
+type UpdateTilesCountHandler = RequestHandler<ICounterIdentifier, ITilesCountRequest, ITilesCountRequest>;
 
 @injectable()
 export class TilesController {
@@ -21,7 +25,8 @@ export class TilesController {
   public getTilesCount: GetTilesCountHandler = async (req, res, next) => {
     try {
       const layerId = req.params.layerId;
-      return res.status(httpStatus.OK).json(await this.manager.getTilesCount(layerId));
+      const target = req.params.target;
+      return res.status(httpStatus.OK).json(await this.manager.getTilesCount(layerId,target));
     } catch (error) {
       next(error);
     }
@@ -29,7 +34,7 @@ export class TilesController {
 
   public upsertTilesCount: UpdateTilesCountHandler = async (req, res, next) => {
     try {
-      await this.manager.upsertTilesCount(req.params.layerId, req.body.tilesBatchCount);
+      await this.manager.upsertTilesCount(req.params.layerId, req.params.target, req.body.tilesBatchCount);
       this.createdResourceCounter.add(1);
       res.sendStatus(httpStatus.CREATED);
     } catch (error) {

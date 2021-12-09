@@ -9,7 +9,7 @@ info:
     name: MIT
     url: https://opensource.org/licenses/MIT
 paths:
-  /tilesCount/{layerId}:
+  /tilesCount/{layerId}/{target}:
     get:
       operationId: getTilesCount
       tags:
@@ -17,6 +17,11 @@ paths:
       summary: gets the tiles count by layer id
       parameters:
         - name: layerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: target
           in: path
           required: true
           schema:
@@ -41,6 +46,11 @@ paths:
       summary: insert/update the tiles count by layer id
       parameters:
         - name: layerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: target
           in: path
           required: true
           schema:

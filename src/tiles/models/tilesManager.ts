@@ -18,24 +18,24 @@ export class TilesManager {
   public constructor(@inject(Services.LOGGER) private readonly logger: Logger, private readonly pgClient: PgClient) {
     this.logger = logger;
   }
-  public async getTilesCount(layerId: string): Promise<ITilesCountResponse> {
-    const query = `SELECT "tilesCount" FROM "TilesCounter" WHERE "layerId"=$1`;
-    const values = [layerId];
+  public async getTilesCount(layerId: string, target: string): Promise<ITilesCountResponse> {
+    const query = `SELECT "tilesCount" FROM "TilesCounter" WHERE "layerId"=$1 AND "target"=$2`;
+    const values = [layerId, target];
     const result = await this.pgClient.execute<ITilesCountResponse>(query, values);
     // throw not-found error if the query result is an empty array which means layer id is not exists.
     if (result.length === 0) {
-      throw new NotFoundError(`layer id: "${layerId}" is not exists`);
+      throw new NotFoundError(`layer id: "${layerId}" for target "${target}" is not exists`);
     }
     const data = result[0];
     return data;
   }
 
-  public async upsertTilesCount(layerId: string, tilesBatchCount: number): Promise<void> {
-    this.logger.info(`updating tiles batch count for layerId: '${layerId}' in database by ${tilesBatchCount} tiles`);
-    const query = `INSERT INTO "TilesCounter" ("tilesCount", "layerId")
-      VALUES ($1, $2)
-      ON CONFLICT ("layerId") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
-    const values = [tilesBatchCount, layerId];
+  public async upsertTilesCount(layerId: string, target: string, tilesBatchCount: number): Promise<void> {
+    this.logger.info(`updating tiles batch count for layerId: '${layerId}' and target: '${target}' in database by ${tilesBatchCount} tiles`);
+    const query = `INSERT INTO "TilesCounter" ("tilesCount", "layerId", "target")
+      VALUES ($1, $2, $3)
+      ON CONFLICT ("layerId","target") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
+    const values = [tilesBatchCount, layerId, target];
     await this.pgClient.execute(query, values);
   }
 }

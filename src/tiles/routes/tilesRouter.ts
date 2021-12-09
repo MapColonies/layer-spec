@@ -6,8 +6,8 @@ const tilesRouterFactory: FactoryFunction<Router> = (dependencyContainer) => {
   const router = Router();
   const controller = dependencyContainer.resolve(TilesController);
 
-  router.get('/tilesCount/:layerId', controller.getTilesCount);
-  router.put('/tilesCount/:layerId', controller.upsertTilesCount);
+  router.get('/tilesCount/:layerId/:target', controller.getTilesCount);
+  router.put('/tilesCount/:layerId/:target', controller.upsertTilesCount);
 
   return router;
 };

@@ -1,4 +1,4 @@
-import { NotFoundError } from '@map-colonies/error-types';
+import { BadRequestError, NotFoundError } from '@map-colonies/error-types';
 import { Logger } from '@map-colonies/js-logger';
 import { inject, injectable } from 'tsyringe';
 import { PgClient } from '../../clients/pgClient';
@@ -36,6 +36,17 @@ export class TilesManager {
       VALUES ($1, $2, $3)
       ON CONFLICT ("layerId","target") DO UPDATE SET "tilesCount" = "TilesCounter"."tilesCount" + $1`;
     const values = [tilesBatchCount, layerId, target];
-    await this.pgClient.execute(query, values);
+    try {
+      await this.pgClient.execute(query, values);
+    } catch (err) {
+      const error = err as Error & { code: string };
+      if (error.message.includes('Invalid tiles count (negative value)')) {
+        const errorMessage = `layerId: ${layerId}, target: ${target}, failed to update tiles batch count because total tiles where negative, inner message: ${error.message}`;
+        this.logger.error(errorMessage);
+        throw new BadRequestError(errorMessage);
+      } else {
+        throw err;
+      }
+    }
   }
 }

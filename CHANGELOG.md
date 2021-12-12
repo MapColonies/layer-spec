@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/MapColonies/layer-spec/compare/v2.0.0...v2.0.1) (2021-12-12)
+
+
+### Bug Fixes
+
+* negative values handling ([#8](https://github.com/MapColonies/layer-spec/issues/8)) ([a61e74b](https://github.com/MapColonies/layer-spec/commit/a61e74b24c38e309f59b7f6d71e3ea599410e77f))
+
 ## [2.0.0](https://github.com/MapColonies/layer-spec/compare/v1.1.2...v2.0.0) (2021-12-09)
 
 

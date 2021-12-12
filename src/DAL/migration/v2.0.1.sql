@@ -1,13 +1,5 @@
--- Table: public.TilesCounter
--- DROP TABLE public.TilesCounter;
-CREATE TABLE public."TilesCounter"
-(
-  "id" serial ,
-	"tilesCount" int NOT NULL,
-	"target" text COLLATE pg_catalog."default" NOT NULL,
-	"layerId" varchar(340),
-	 PRIMARY KEY ("layerId","target")
-);
+ALTER TABLE public."TilesCounter"
+  DROP CONSTRAINT "tilesCount";
 
 CREATE FUNCTION public.check_tiles_counter_invalid_tiles() RETURNS trigger
     LANGUAGE plpgsql

@@ -39,7 +39,7 @@ export class TilesManager {
     try {
       await this.pgClient.execute(query, values);
     } catch (err) {
-      const error = err as Error & { code: string };
+      const error = err as Error;
       if (error.message.includes('Invalid tiles count (negative value)')) {
         const errorMessage = `layerId: ${layerId}, target: ${target}, failed to update tiles batch count because total tiles where negative, inner message: ${error.message}`;
         this.logger.error(errorMessage);

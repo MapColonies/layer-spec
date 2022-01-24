@@ -4,6 +4,16 @@ global:
   metrics: {}
   environment: {}
 
+authentication:
+  ca:
+    enabled: false
+    useExternal: false
+    externalSecretName: ""
+  ssl:
+    enabled: false
+    useExternal: false
+    externalSecretName: ""
+
 enabled: true
 environment: "development"
 replicaCount: 1
@@ -21,6 +31,8 @@ image:
 
 local:
   certs:
+    ca: "certs/ca.crt"
+    ssl: "certs/openssl.cnf"
     postgres:
       ca: "certs/postgres/rootCA.crt"
       key: "certs/postgres/avi.key"

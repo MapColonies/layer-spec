@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/MapColonies/layer-spec/compare/v2.0.1...v2.0.2) (2022-01-30)
+
+
+### Bug Fixes
+
+* removed port format ([#4](https://github.com/MapColonies/layer-spec/issues/4)) ([24cb04e](https://github.com/MapColonies/layer-spec/commit/24cb04ea079651857f21e461d8daa60ad6c10a4c))
+
 ### [2.0.1](https://github.com/MapColonies/layer-spec/compare/v2.0.0...v2.0.1) (2021-12-12)
 
 

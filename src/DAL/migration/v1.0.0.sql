@@ -1,6 +1,7 @@
--- Table: public.TilesCounter
--- DROP TABLE public."TilesCounter";
-CREATE TABLE public."TilesCounter"
+SET search_path TO "LayerSpec", public; -- CHANGE SCHEMA NAME TO MATCH ENVIRONMENT
+-- Table: TilesCounter
+-- DROP TABLE "TilesCounter";
+CREATE TABLE "TilesCounter"
 (
   "id" serial ,
 	"tilesCount" int NOT NULL CONSTRAINT "tilesCount" CHECK ("tilesCount" > 0),

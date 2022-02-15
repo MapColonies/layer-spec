@@ -1,7 +1,8 @@
-ALTER TABLE public."TilesCounter"
+SET search_path TO "LayerSpec", public; -- CHANGE SCHEMA NAME TO MATCH ENVIRONMENT
+ALTER TABLE "TilesCounter"
   DROP CONSTRAINT "tilesCount";
 
-CREATE FUNCTION public.check_tiles_counter_invalid_tiles() RETURNS trigger
+CREATE FUNCTION check_tiles_counter_invalid_tiles() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 BEGIN
@@ -14,6 +15,6 @@ $$;
 
 CREATE TRIGGER raise_insert_update_invalid_tiles
     AFTER INSERT OR UPDATE
-    ON public."TilesCounter"
+    ON "TilesCounter"
     FOR EACH ROW
-    EXECUTE PROCEDURE public.check_tiles_counter_invalid_tiles();
+    EXECUTE PROCEDURE check_tiles_counter_invalid_tiles();

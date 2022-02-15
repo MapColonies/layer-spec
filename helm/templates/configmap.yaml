@@ -23,6 +23,7 @@ data:
   DB_HOST: {{ .Values.env.db.host | quote }}
   DB_PORT: {{ .Values.env.db.port | quote }}
   DB_NAME: {{ .Values.env.db.database | quote }}
+  DB_SCHEMA: {{ .Values.env.db.schema | quote }}
   DB_SSL_ENABLE: {{ .Values.env.db.sslEnabled | quote }}
   DB_REJECT_UNAUTHORIZED: {{ .Values.env.db.rejectUnauthorized | quote }}
 {{- end }}

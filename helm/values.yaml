@@ -62,6 +62,7 @@ env:
   db:
     host: "localhost"
     database: "sync-storage"
+    schema: "public"
     port: 5432
     sslEnabled: false
     rejectUnauthorized: true

@@ -49,7 +49,7 @@
     "password": "DB_PASSWORD",
     "database": "DB_NAME",
     "schema": "DB_SCHEMA",
-    "enableSslAuth": {
+    "sslEnabled": {
       "__name": "DB_SSL_ENABLE",
       "__format": "boolean"
     },

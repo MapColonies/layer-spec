@@ -14,7 +14,7 @@ export class PgClient {
       host: this.dbConfig.host,
       user: this.dbConfig.user,
       database: this.dbConfig.database,
-      password: this.dbConfig.password,
+      password: this.dbConfig.password ? this.dbConfig.password : undefined,
       port: this.dbConfig.port,
     };
     if (dbConfig.sslEnabled) {

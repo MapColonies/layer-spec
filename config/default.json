@@ -32,7 +32,7 @@
     "database": "sync-storage",
     "schema": "LayerSpec",
     "port": 5432,
-    "enableSslAuth": false,
+    "sslEnabled": false,
     "rejectUnauthorized": true,
     "sslPaths": {
       "ca": "",

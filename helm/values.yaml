@@ -26,7 +26,7 @@ cloudProvider:
   flavor: "openshift"
 
 image:
-  repository: "layer-spec-registry"
+  repository: "layer-spec"
   tag: "latest"
 
 local:
@@ -49,7 +49,7 @@ env:
   port: 8080
   targetPort: 8080
   protocol: "TCP"
-  logLevel: "info"
+  logLevel: "warn"
   logPrettyPrintEnabled: false
   responseCompressionEnabled: true
   requestPayloadLimit: "1mb"
@@ -65,10 +65,10 @@ env:
     schema: "public"
     port: 5432
     sslEnabled: false
-    rejectUnauthorized: true
+    rejectUnauthorized: false
   
 resources:
-  enabled: false
+  enabled: true
   value:
     limits:
       cpu: "100m"

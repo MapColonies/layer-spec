@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/MapColonies/layer-spec/compare/v2.0.3...v2.0.4) (2022-03-01)
+
+
+### Bug Fixes
+
+* no schema support with pg library ([#15](https://github.com/MapColonies/layer-spec/issues/15)) ([13a7681](https://github.com/MapColonies/layer-spec/commit/13a76816cf7e8b6b1dc76d55ec32a5457e662ee5))
+
 ### [2.0.3](https://github.com/MapColonies/layer-spec/compare/v2.0.2...v2.0.3) (2022-02-21)
 
 

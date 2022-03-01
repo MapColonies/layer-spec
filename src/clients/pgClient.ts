@@ -30,6 +30,7 @@ export class PgClient {
 
   public async execute<T>(query: string, values?: unknown[]): Promise<T[]> {
     const client = await this.pool.connect();
+    await client.query(`SET search_path TO "${this.dbConfig.schema}", public`);
     try {
       const queryResult = await client.query<T>(query, values);
       return queryResult.rows;

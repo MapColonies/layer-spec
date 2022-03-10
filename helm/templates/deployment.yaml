@@ -62,6 +62,26 @@ spec:
           secret:
             secretName: {{ $sslSecretName }}
         {{- end }}
+        {{- if .Values.env.db.sslEnabled }}
+        - name: ca-file
+          secret:
+            secretName: {{ $postgresSecretName }}
+            items:
+              - key: caFile
+                path: ca.pem
+        - name: key-file
+          secret:
+            secretName: {{ $postgresSecretName }}
+            items:
+              - key: keyFile
+                path: key.pem
+        - name: cert-file
+          secret:
+            secretName: {{ $postgresSecretName }}
+            items:
+              - key: certFile
+                path: cert.pem
+      {{- end }}
       containers:
         - name: {{ $releaseName }}-{{ $chartName }}-deployment
           {{- with .Values.image }}
@@ -90,6 +110,12 @@ spec:
                 secretKeyRef:
                   name: {{ $postgresSecretName }}
                   key: password
+            - name: DB_SSL_CA
+              value: "/opt/certs/ca/ca.pem"
+            - name: DB_SSL_KEY
+              value: "/opt/certs/key/key.pem"
+            - name: DB_SSL_CERT
+              value: "/opt/certs/cert/cert.pem"
           envFrom:
             - configMapRef:
                 name: {{ $releaseName }}-{{ $chartName }}-configmap
@@ -112,6 +138,14 @@ spec:
               mountPath: "/etc/ssl/openssl.cnf"
               subPath: "openssl.cnf"
             {{- end }}
+            {{- if .Values.env.db.sslEnabled }}
+            - name: ca-file
+              mountPath: /opt/certs/ca/ca.pem
+            - name: key-file
+              mountPath: /opt/certs/key/key.pem
+            - name: cert-file
+              mountPath: /opt/certs/cert/cert.pem
+          {{- end }}
           {{- if .Values.resources.enabled }}
           resources:
             {{- toYaml .Values.resources.value | nindent 12 }}

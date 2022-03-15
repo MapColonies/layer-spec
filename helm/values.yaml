@@ -13,6 +13,7 @@ authentication:
     enabled: false
     useExternal: false
     externalSecretName: ""
+    resetOnConfigChange: true
 
 enabled: true
 environment: "development"
